@@ -1,0 +1,41 @@
+const {MongoClient} = require('mongodb');
+
+const uri = "mongodb+srv://TravisPost:password@cluster0.epikx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
+const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+
+client.connect(err => {
+    console.log("connected");
+    const collection = client.db("myData").collection("superhero");
+    const heroes = collection.find({
+        $and:
+        [
+            {
+                 name: {
+                    $regex: 'Spider'
+                    }
+            },
+            {
+                appearances: {
+                    $gt: 1
+                }
+
+            },
+            {
+                year: {
+                    $lt: 1990
+                }
+
+            } 
+            
+        ]
+        
+    }).toArray(
+        function (err, result){
+            if (err) throw err;
+            console.log(result);
+            client.close();
+        }
+    )
+}
+)
