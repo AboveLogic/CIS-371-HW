@@ -17,4 +17,22 @@ rl.question("Please enter a search term",
        
 )
 rl.close();
-     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is my package.json file I attempted to use to fix the error to no avail.
+{
+    "type": "module",
+
+    "dependencies": {
+        "node-fetch": "^3.0.0"
+    }
+
+
+
+
+}
