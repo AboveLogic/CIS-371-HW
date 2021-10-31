@@ -1,38 +1,16 @@
 import fetch from 'node-fetch'
+import readline from 'readline'
 
-const readline = require('readline');
 const rl = readline.createInterface({input : process.stdin, output : process.stdout});
 
 rl.question("Please enter a search term",
-    (term) => {
-        const searchTerm = term;
-        fetch('http://universities.hipolabs.com/search?name=' +term)
-        .then(response => response.json())
-        .then( json => {
-            console.log(json.searchTerm);
-
-        }
-        
-        )}
-       
+	(term) => {
+		const searchTerm = term;
+		fetch('http://universities.hipolabs.com/search?name=' +term)
+		.then(response => response.json())
+		.then(json => {
+			console.log(json);
+			rl.close();
+		}
+		)}
 )
-rl.close();
- 
- 
- 
- 
- 
- 
- 
-This is my package.json file I attempted to use to fix the error to no avail.
-{
-    "type": "module",
-
-    "dependencies": {
-        "node-fetch": "^3.0.0"
-    }
-
-
-
-
-}
