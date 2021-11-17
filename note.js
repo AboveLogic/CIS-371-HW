@@ -38,7 +38,8 @@ exports.getOne = async function(req, res){
 	// all of our notes for a search term.  It returns
 	// all the notes that match.
 	// We are using a regex to search.
-	const notes = await Note.find({ 
+	const notes = await Note.find({
+		userId : req.user._id,
 		note: { 
 			$regex: req.params.searchTerm 
 		}
